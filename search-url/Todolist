@@ -2,4 +2,6 @@
 2.add --save-host --save-url
 3.add threads
 4.add filter
-5.add page 
+5.add page
+6.use class
+7.use pyquery
