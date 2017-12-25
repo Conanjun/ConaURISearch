@@ -88,7 +88,6 @@ def run():
     while not q.empty():
         result_set = result_set | set(q.get())
 
-    print savefile
     if savefile == 'yes':
         with open(key + '.txt', 'a+') as f:
             for i in result_set:
