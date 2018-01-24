@@ -125,14 +125,14 @@ class GetFreeProxy(object):
     @property
     def available_ip(self):
         available_ip=[]
-        for e in self.freeProxyFirst():
-            available_ip.append(e)
+        # for e in self.freeProxyFirst():
+        #     available_ip.append(e)
+        #
+        # for e in self.freeProxySecond():
+        #     available_ip.append(e)
 
-        for e in self.freeProxySecond():
-            available_ip.append(e)
-
-        for e in self.freeProxyThird():
-            available_ip.append(e)
+        # for e in self.freeProxyThird():
+        #     available_ip.append(e)
         for e in self.freeProxyFourth():
             available_ip.append(e)
 

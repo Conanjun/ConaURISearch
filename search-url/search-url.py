@@ -35,6 +35,9 @@ def show_logo():
 
 q = Queue.Queue()
 
+print ('Geting proxies ...')
+proxies = [{"https": "https://{proxy}".format(proxy=i)} for i in GetFreeProxy().available_ip]
+print ('Got %d proxies' % len(proxies))
 
 def conasearch(engine='google', key='python', page_num=0, page_size=30):
     result = []
@@ -50,8 +53,7 @@ def conasearch(engine='google', key='python', page_num=0, page_size=30):
             # print '[URL]', i
             result.append(i)
     elif engine == 'baidu':
-        proxies = [{"https": "https://{proxy}".format(proxy=i)} for i in GetFreeProxy().available_ip]
-        print ('Got %d proxies' % len(proxies))
+        global proxies
         mb = MagicBaidu(proxies)
         for i in mb.search(query=key, pn=page_size * (page_num - 1), rn=page_size):
             print '[URL]', i['url'], ': ', '[TITLE]', i['title']
@@ -79,6 +81,8 @@ def run():
     for i in range(start_page, end_page + 1):
         threads.append(threading.Thread(target=conasearch, args=(engine, key, i, page_size),
                                         name='thread-' + str(i)))
+    # 添加写文件线程，防止程序中断未写入结果
+
     for i in threads:
         i.setDaemon(True)
         i.start()
